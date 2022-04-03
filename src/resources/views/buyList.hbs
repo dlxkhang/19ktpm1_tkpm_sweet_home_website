@@ -1,0 +1,197 @@
+<div class="tm-page-wrap">
+    <div class="container-fluid">
+        <div id="content" class="mx-auto tm-content-container">
+            <main class="buying-section">
+                <div class="buy-title">
+                    <p>Discover your perfect home</p>
+                </div>
+                <div class="row mt-4 align-content-between">
+                    <div class="col-6 category">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item mr-4">
+                                <h4>Categories:</h4>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" name="all" aria-current="page" href="/buy/categories/all">All</a>
+                            </li>
+                            {{#each category}}
+                            <li class="nav-item">
+                                <a name="{{this.slug}}" class="nav-link" href="/buy/categories/{{this.slug}}">{{this.name}}</a>
+                            </li>
+                            {{/each}}
+
+                        </ul>
+                    </div>
+                </div>
+              <div class="row mt-4">
+                <div class ="wrapper_layered_filter">
+                  <div class="layered_filter_container">
+                    <div class="layered_filter_title hidden-xs hidden-sm">
+                      <p class="title_filter">
+                            <span class="icon-filter">
+                              <i class="fas fa-filter"></i>
+                            </span>
+                        Filter
+                      </p>
+                    </div>
+                    <div class="layered_filter_group">
+                      <div class="row">
+                        <div class="filter_group col-md-4" aria-expanded="true">
+                          <div class="filter_group_block">
+                            <div class="filter_group-subtitle">
+                              <span>PRICE</span>
+                              <span class="icon-control">
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                  </span>
+                            </div>
+                            <div class="filter_group-content filter-price">
+                              <ul class="checkbox-list">
+                                <li>
+                                  <input type="checkbox" name="cc" data-price-min = 0 data-price-max=200000 id="p1" />
+                                  <label for="p1"><span>Below</span> 200,000$</label>
+                                </li>
+                                <li>
+                                  <input type="checkbox" name="cc"  data-price-min = 200000 data-price-max=500000 id="p2" />
+                                  <label for="p2"> 200,000$ - 500,000$ </label>
+                                </li>
+                                <li>
+                                  <input type="checkbox" name="cc" data-price-min = 500000 data-price-max=1000000 id="p3" />
+                                  <label for="p3"> 500,000$ - 1,000,000$ </label>
+                                </li>
+                                <li>
+                                  <input type="checkbox" name="cc" data-price-min = 1000000 data-price-max=5000000 id="p4" />
+                                  <label for="p4"> 1,000,000$ - 5,000,000$ </label>
+                                </li>
+                                <li>
+                                  <input type="checkbox" name="cc" data-price-min = 5000000 data-price-max=Infinity id="p5" />
+                                  <label for="p5"> <span>Above</span> 5,000,000$ </label>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="filter_group col-md-4" aria-expanded="true">
+                          <div class="filter_group_block">
+                            <div class="filter_group-subtitle">
+                              <span>RATE</span>
+                              <span class="icon-control">
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                  </span>
+                            </div>
+                            <div class="filter_group-content filter-ratings">
+                              <ul class="checkbox-list">
+                                <li>
+                                  <input type="checkbox" name="cc" data-rate="1" id="rate-p1" />
+                                  <label for="rate-p1">
+                                    <i class="fas fa-star"></i>
+                                  </label>
+                                </li>
+                                <li>
+                                  <input type="checkbox" name="cc" data-rate="2" id="rate-p2" />
+                                  <label for="rate-p2">
+                                    <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+                                  </label>
+                                </li>
+                                <li>
+                                  <input type="checkbox" name="cc" data-rate="3" id="rate-p3" />
+                                  <label for="rate-p3">
+                                    <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+                                  </label>
+                                </li>
+                                <li>
+                                  <input type="checkbox" name="cc" data-rate="4" id="rate-p4" />
+                                  <label for="rate-p4">
+                                    <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+                                  </label>
+                                </li>
+                                <li>
+                                  <input type="checkbox" name="cc" data-rate="5" id="rate-p5" />
+                                  <label for="rate-p5">
+                                    <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+                                  </label>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="filter_group col-md-4" aria-expanded="true">
+                          <div class="filter_group_block">
+                            <div class="filter_group-subtitle">
+                                    <span class="icon-filter">
+                                      <i class="fas fa-sort-alpha-down"></i>
+                                    </span>
+                              <span>SORT</span>
+                              <span class="icon-control">
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                  </span>
+                            </div>
+                            <div class="filter_group-content">
+                              <ul class="sort-by sort-by-content">
+                                <li>
+                                  <span data-sort-by="price-ascending">Price ascending</span>
+                                </li>
+                                <li>
+                                  <span data-sort-by="price-descending">Price descending</span>
+                                </li>
+                                <li>
+                                  <span data-sort-by="created-ascending">Latest properties</span>
+                                </li>
+                                <li>
+                                  <span data-sort-by="created-descending">Oldest properties</span>
+                                </li>
+
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="layered_filter_tags">
+                <div class="filter_tags">
+                  Filter price:
+                  <b></b>
+                  <span class="filter_tags_removed">
+                    <i class="fas fa-times"></i>
+                  </span>
+                </div>
+                <div class="filter_tags">
+                  Filter rate:
+                  <b>
+
+                  </b>
+                  <span class="filter_tags_removed">
+                    <i class="fas fa-times"></i>
+                  </span>
+                </div>
+                <div class="filter_tags filter_tags_remove_all">
+                  <span>Remove all</span>
+                </div>
+              </div>
+                <div class ="content"></div>
+            </main>
+          <div class="d-flex justify-content-center">
+            <div id="property-pagination-wrapper" class = "mt-4  pagination-wrapper "></div>
+          </div>
+
+            {{!-- <nav aria-label="Page navigation example" class="mt-4">
+                <ul class="pagination pagination-lg justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link">Previous</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav> --}}
+        </div> <!-- tm-content-container -->
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="/jquery/buyList.js"></script>

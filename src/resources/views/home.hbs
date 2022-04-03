@@ -1,0 +1,120 @@
+<!-- Latest property -->
+<section id="aa-latest-property">
+    <div class="container">
+        <div class="aa-latest-property-area">
+            <div class="aa-title">
+                <h2 class="latest-properties-label">Latest Properties</h2>
+                <span></span>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum sit ea nobis quae vero voluptatibus.
+                </p>
+            </div>
+            <div class="aa-latest-properties-content">
+                <div class="row" id="list-properties-container">
+                    {{#each properties }}
+                    <div class=" col-lg-4 col-md-6 d-inline-flex">
+                        <div class="card mt-4 w-100">
+                            <a href="/detail/{{this.slug}}">
+                                <img src="{{this.previewImage}}" class="card-img-top prev_image" alt="{{this.name}}" />
+                            </a>
+                            <div class="card-body" class="no-text-decoration">
+                                <div class="d-flex justify-content-between">
+                                    <a href="/detail/{{this.slug}}" class="property-title">
+                                    <h5 class="card-title ">{{this.name}}</h5>
+                                    </a>
+                                    <h5 class="property-price ">${{this.price}}</h5>
+                                </div>
+
+                                <p class="card-text">
+                                    {{#each this.feature}}
+                                <ul>
+                                    <li>{{this}}</li>
+                                </ul>
+                                {{/each}}
+                                </p>
+                            </div>
+                            <div class = "card-footer d-flex justify-content-between foot">
+                                <p><i class="far fa-clock"></i> {{this.time}} {{this.unit}} ago</p>
+                                <a href="#" class="btn btn-primary">Liên hệ</a>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<!-- / Latest property -->
+
+<!-- Service section -->
+<section id="aa-service">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="aa-service-area">
+                    <div class="aa-title">
+                        <h2 class="latest-properties-label">Our Service</h2>
+                        <span></span>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum sit ea nobis quae vero
+                            voluptatibus.</p>
+                    </div>
+                    <!-- service content -->
+                    <div class="aa-service-content">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="aa-single-service">
+                                    <div class="aa-service-icon">
+                                        <span class="fa fa-home"></span>
+                                    </div>
+                                    <div class="aa-single-service-content">
+                                        <h4><a href="#">Property Sale</a></h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto repellendus
+                                            quasi asperiores itaque dolorem at.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="aa-single-service">
+                                    <div class="aa-service-icon">
+                                        <span class="fa fa-check"></span>
+                                    </div>
+                                    <div class="aa-single-service-content">
+                                        <h4><a href="#">Property Rent</a></h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto repellendus
+                                            quasi asperiores itaque dolorem at.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="aa-single-service">
+                                    <div class="aa-service-icon">
+                                        <span class="fa fa-crosshairs"></span>
+                                    </div>
+                                    <div class="aa-single-service-content">
+                                        <h4><a href="#">Property Development</a></h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto repellendus
+                                            quasi asperiores itaque dolorem at.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="aa-single-service">
+                                    <div class="aa-service-icon">
+                                        <span class="fa fa-chart-bar"></span>
+                                    </div>
+                                    <div class="aa-single-service-content">
+                                        <h4><a href="#">Market Analysis</a></h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto repellendus
+                                            quasi asperiores itaque dolorem at.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- / Service section -->
