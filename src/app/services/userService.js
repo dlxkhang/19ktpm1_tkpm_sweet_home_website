@@ -146,3 +146,105 @@ module.exports.activateEmail = function(email, activationString) {
   });
 
 };
+module.exports.getListFavourite = (email) => {
+  return new Promise(async (resolve, reject) => {
+    await userModel.findOne({
+      email: email
+    })
+      .lean()
+      .populate("favourite")
+      .then((user) => {
+        resolve(user.favourite);
+      })
+      .catch((error) => reject(error));
+  });
+};
+module.exports.sendResetLink = (email) => {
+  return new Promise(async (resolve, reject) => {
+    const token = randomString.generate({ charset: "numeric" });
+    const now = Date(Date.start);
+    const resetToken = {
+      token: token,
+      updatedAt: now
+    };
+    await userModel.findOneAndUpdate({ email: email }, { resetToken },{new:true})
+      .then((user) => {
+        if(user===null){
+          resolve('not-exist');
+        }
+        else{
+          const linkResetPassword = `${process.env.DOMAIN_NAME}/reset-password?email=${user.email}&token=${user.resetToken.token}`;    // send activation string to user email
+          const msg = {
+            to: email, // Change to your recipient
+            from: process.env.EMAIL_SENDER, // Change to your verified sender
+            subject: "Sweet Home Reset Password",
+            text: "and easy to do anywhere, even with Node.js",
+            html: emailContent.resetPassword(linkResetPassword)
+          };
+          sgMail
+            .send(msg)
+            .then(() => {
+              resolve("success");
+              console.log("Email sent");
+            })
+            .catch((error) => {
+              reject(error);
+              console.error(error);
+            });
+        }
+      })
+      .catch((error) => reject(error));
+  });
+};
+
+module.exports.checkResetToken = (email,token) =>{
+  return new Promise(async (resolve, reject) =>{
+    await userModel.findOne({email:email})
+      .lean()
+      .then(user => {
+        if(user==null){
+          resolve("not-exist");
+        }
+        else{
+        if(user.resetToken.token===token){
+          const seconds = (Date.now() - user.resetToken.updatedAt.getTime()) / 1000;
+          console.log(seconds);
+          // expired time
+          if(seconds > 600){
+            resolve('expired-token');
+          }
+          else{
+            resolve("success");
+          }
+        }
+        else{
+          resolve("invalid-token");
+        }
+       }
+      })
+      .catch((error) =>{
+        reject(error);
+      })
+  })
+}
+module.exports.resetPassword = (email,newPassword) => {
+  return new Promise(async (resolve, reject) =>{
+      await bcrypt.hash(newPassword, 10)
+        .then((hashPassword)=>{
+          // Find and update user password in database
+          userModel.findOneAndUpdate({ email: email }, { password: hashPassword }, { upsert: true })
+            .then((user=>{
+              if(user === null){
+                resolve('not-exist')
+              }
+              else{
+                resolve('success')
+              }
+            }))
+            .catch((err) => reject(err))
+        })
+        .catch((err) => reject(err))
+
+  })
+
+}

@@ -1,4 +1,5 @@
 const userService = require('../services/userService');
+const tourService = require('../services/tourService');
 
 class userController {
 
@@ -47,6 +48,5 @@ class userController {
       res.send(ack);
   }
 
-  
 }
 module.exports = new userController();
