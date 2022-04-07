@@ -48,5 +48,30 @@ class userController {
       res.send(ack);
   }
 
+  async showFavoriteList(req, res) {
+    const listFavourite = await userService.getListFavourite(req.user.email);
+    res.render('user/favourite', {favourites: listFavourite });
+  }
+
+  async removeFromFavouriteList(req, res,next) {
+    if(!req.user){
+      res.send('not-login');
+    }
+    const email = req.user.email;
+    const propertyId = req.body.propertyId;
+    await userService.removeFromFavourite(email, propertyId)
+      .then((ack)=> res.send(ack))
+      .catch((err)=>next(err));
+  }
+
+  async showHomeTours(req, res) {
+    const homeTours = await tourService.loadHomeTours(req.user._id);
+    res.render('homeTour', {homeTours: homeTours});
+  }
+
+  async cancelHomeTour(req, res) {
+    const ack = await tourService.cancelHomeTour(req.user._id, req.params.homeTourId);
+    res.send(ack);
+  }
 }
 module.exports = new userController();
