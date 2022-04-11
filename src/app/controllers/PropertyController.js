@@ -31,6 +31,30 @@ class PropertyController {
     res.send(properties);
   }
 
+// GET comment per pages
+  async loadCommentPerPage(req, res) {
+    const comments = await commentService.loadCommentPerPage(req.params.slug, req.params.page);
+    if(comments)
+      res.send(comments);
+  }
+  
+  // POST COMMENT
+  async postComment(req, res) {
+    if(!req.user) {
+      res.send('redirect');
+      return;
+    }
+
+    const user = {
+      _id: req.user._id,
+      fullName: req.user.fullName,
+      avatar: req.user.avatar
+    }
+
+    const newComment = await commentService.postComment(user, req.body.propertyId, req.body.commentContent);
+    if(newComment)
+      res.send(newComment);
+  }
 
   // REQUEST A TOUR
   async requestTour(req, res) {
