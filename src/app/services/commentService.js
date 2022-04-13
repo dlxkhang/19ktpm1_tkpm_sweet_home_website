@@ -14,7 +14,6 @@ module.exports.loadCommentPerPage = (propertySlug, page) => {
                 select: 'slug',
                 match: { slug: propertySlug }
             })
-            .sort({'createdAt':-1})
             .skip((commentPerPage * page) - commentPerPage)
             .limit(commentPerPage)
             .exec((err, comments) => {
@@ -47,7 +46,7 @@ module.exports.loadCommentPerPage = (propertySlug, page) => {
                                 authorName: comment.authorName,
                                 authorAvatar: comment.authorAvatar,
                                 content: comment.content,
-                                createdAt: comment.createdAt.toLocaleString('vi-VN')
+                                createdAt: comment.createdAt
                             }
                         })
                         resolve({comments: resultSet, numOfComment: count});
