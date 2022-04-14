@@ -28,13 +28,8 @@ function loadCommentPerPage(currentPage) {
 
         $('.comments').html(template({commentData: data}));
 
-        // Update total properties in every get request
-        if(data.numOfComment <= commentPerPage)
-            $('.pagination-wrapper').hide();
-        else {
-            $('.pagination-wrapper').show(); // show pagination when num of comments > commentPerPage (> 5)
-            $('.pagination-wrapper').pagination('updateItems', data.numOfComment);
-        }
+        $('.pagination-wrapper').show(); // show pagination when num of comments > commentPerPage (> 5)
+        $('.pagination-wrapper').pagination('updateItems', data.numOfComment);
     });
 }
 
