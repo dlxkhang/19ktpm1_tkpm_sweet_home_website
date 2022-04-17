@@ -33,24 +33,43 @@ module.exports.loadCommentPerPage = (propertySlug, page) => {
                         select: 'slug',
                         match: { slug: propertySlug }
                     })
-                    .exec((err, result) => {
-                        // Count total comments
-                        result = result.filter((comment) =>  {
+                    .exec((err, comments) => {
+                        var resultSet = comments.filter((comment) =>  {
                             return comment.postId !== null;
                         });
-                        const count = result.length;
+                        if(err) {
+                            console.log(err);
+                            reject(err);
+                        }
+                        else {
+                            // Count total comments
+                            commentModel
+                            .find()
+                            .populate({
+                                path: 'postId',
+                                select: 'slug',
+                                match: { slug: propertySlug }
+                            })
+                            .exec((err, result) => {
+                                // Count total comments
+                                result = result.filter((comment) =>  {
+                                    return comment.postId !== null;
+                                });
+                                const count = result.length;
 
-                        // Extract needed information
-                        resultSet = resultSet.map((comment) =>{
-                            return {
-                                authorName: comment.authorName,
-                                authorAvatar: comment.authorAvatar,
-                                content: comment.content,
-                                createdAt: comment.createdAt
-                            }
-                        })
-                        resolve({comments: resultSet, numOfComment: count});
-                    })
+                                // Extract needed information
+                                resultSet = resultSet.map((comment) =>{
+                                    return {
+                                        authorName: comment.authorName,
+                                        authorAvatar: comment.authorAvatar,
+                                        content: comment.content,
+                                        createdAt: comment.createdAt.toLocaleString('vi-VN')
+                                    }
+                                })
+                                resolve({comments: resultSet, numOfComment: count});
+                            })
+                        }
+                    });
                 }
             });
     })
