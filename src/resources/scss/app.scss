@@ -6,7 +6,12 @@ https://templatemo.com/tm-552-video-catalog
 
 */
 /* Set the size of the div element that contains the map */
-
+#map {
+  height: 400px;
+  /* The height is 400 pixels */
+  width: 100%;
+  /* The width is the width of the web page */
+}
 
 .tm-page-wrap {
   width: 85%;
