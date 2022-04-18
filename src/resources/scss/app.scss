@@ -1865,18 +1865,6 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
   border-radius: 7px
 }
 
-.stars i {
-  margin-right: 2px;
-  color: red;
-  font-size: 13px
-}
-
-.rating-number {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 2px
-}
-
 .number-ratings {
   font-size: 12px
 }
@@ -1964,6 +1952,17 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
   font-size: 4.5rem;
   margin-right: 1.5rem;
 }
+
+.modal-confirm .close {
+	position: absolute;
+	top: -5px;
+	right: -5px;
+}	
+
+.modal-confirm.modal-dialog {
+	margin-top: 80px;
+}
+
 
 // DELETE MODAL
 #deleteModal .modal-confirm {		

@@ -24,7 +24,7 @@ module.exports.loadHomeTours = (userId) => {
                         propertyName: homeTour.propertyId.name,
                         propertyAddress: homeTour.propertyId.address,
                         propertyDescription: homeTour.propertyId.description,
-                        propertyPrice: homeTour.propertyId.price.toLocaleString(),
+                        propertyPrice: homeTour.propertyId.price,
                         propertyImage: homeTour.propertyId.previewImage
                     }
                 })
