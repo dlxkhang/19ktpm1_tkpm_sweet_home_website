@@ -180,7 +180,6 @@ exports.listByCategory = (slug, currentPage, propertiesPerPage) => {
       Properties.find({})
         .skip((propertiesPerPage * currentPage) - propertiesPerPage)
         .limit(propertiesPerPage)
-        .sort({ createdAt: -1 })
         .exec((err, properties) => {
           if (err) { reject(err); }
           else {
