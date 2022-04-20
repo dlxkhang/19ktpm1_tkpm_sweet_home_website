@@ -3,7 +3,7 @@ $(window).on('load', function () {
     $(".request-tour-btn").on('click', function (e) { 
         e.preventDefault();
         $(this).removeAttr("href");
-        $('#requestTourModal').modal('show');
+        $('#requestTourModal').show();
         $('#requestTourForm').show();
         $('.success-tab').hide();
     });
@@ -13,7 +13,7 @@ $(window).on('load', function () {
         e.preventDefault();
         $(this).removeAttr("href");
         $("#requestTourForm")[0].reset();
-        $('#requestTourModal').modal('hide');
+        $('#requestTourModal').hide();
     });
 
     $(".add-message-btn").on('click', function (e) { 
@@ -26,7 +26,7 @@ $(window).on('load', function () {
     $("#loginConfirmModal .hide-login-confirm-btn").on('click', function (e) { 
         e.preventDefault();
         $(this).removeAttr("href");
-        $('#loginConfirmModal').modal('hide');
+        $('#loginConfirmModal').show();
     });
 
     // Request tour form submit event
@@ -51,7 +51,7 @@ $(window).on('load', function () {
                     $('.requested-date p').html(res.appointmentDate);
                 }
                 else if(res.ack == 'redirect') {
-                    $('#loginConfirmModal').modal('show');
+                    $('#loginConfirmModal').show();
                     $('#loginConfirmModal a').attr("href", window.location.origin + '/login');
                 }
                 
