@@ -9,7 +9,7 @@ class SiteController {
       .then((properties) => {
         res.render('home', { properties });
       })
-      .catch(next);
+      .catch(error -> next(error));
   }
 
 
