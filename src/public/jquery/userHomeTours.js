@@ -3,11 +3,9 @@ $(window).on('load', function () {
     if( $('.tour-list').children().length > 0 ) {
         // If there are upcoming tours => show tour list and hide no-tour-tile
         $('.card-container-custom .container').show();
-        $('.card-container-custom .no-tour-title').hide();
     }
     else {
         $('.card-container-custom .container').hide();
-        $('.card-container-custom .no-tour-title').show();
     }
 
     // ------- DELETE MODAL EVENT --------
@@ -37,7 +35,7 @@ $(window).on('load', function () {
     $('#delete-modal-yes-btn').on( 'click', function (e) { 
         e.preventDefault();
         $(this).removeAttr("href");
-        $('#deleteModal').modal('hide');
+        $('#deleteModal').hide();
 
         const homeTourId = $(this).val(); // Get id of home tour to be deleted
 
@@ -45,7 +43,6 @@ $(window).on('load', function () {
         $.ajax({
             type: "DELETE",
             url: origin + "cancel/" + homeTourId,
-            processData: false,
             contentType: false,
             success: function(res){
                 if(res == 'success') {
