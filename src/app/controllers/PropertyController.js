@@ -17,6 +17,7 @@ class PropertyController {
     const category = await categoryService.listAll()
       .catch(next)
     const relatedProperty = await propertyService.getRelated(req.params.slug);
+// render 
     res.render('properties/detail', {
       isFavourite,
       property: property,
@@ -28,6 +29,7 @@ class PropertyController {
   async listByCategory(req, res, next){
     const properties = await propertyService.listByCategory(req.params.slug,req.params.currentPage,propertiesPerPage)
       .catch(next);
+// send the result to client
     res.send(properties);
   }
 

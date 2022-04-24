@@ -24,12 +24,10 @@ const Comment = new Schema(
   },
 );
 
-// add soft delete framework to Schema
 Comment.plugin(mongooseDelete, {
   deletedAt: true,
   overrideMethods: 'all',
 });
-// add plugin
 
 // create models and export it
 module.exports = mongoose.model('Comment', Comment);
