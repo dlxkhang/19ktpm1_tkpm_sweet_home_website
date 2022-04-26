@@ -45,11 +45,16 @@ class PropertyController {
       return;
     }
 
-    const user = {
+    let user = {
       _id: req.user._id,
-      fullName: req.user.fullName,
-      avatar: req.user.avatar
+      fullName: req.user.fullName
     }
+    if(req.user.avatar) {
+      user["avatar"] = req.user.avatar
+    }
+    else
+      user["avatar"] = null
+    
 
     const newComment = await commentService.postComment(user, req.body.propertyId, req.body.commentContent);
     if(newComment)
