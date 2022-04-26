@@ -39,7 +39,6 @@ module.exports.requestTour = (userId, requestTour) => {
             const newSchedule = {
               fullName: requestTour.fullName,
               email: requestTour.email,
-              phoneNumber: requestTour.phoneNumber,
               propertyId: requestTour.propertyId,
               ack: requestTour.ack,
               appointmentDate: requestTour.appointmentDate
@@ -47,6 +46,9 @@ module.exports.requestTour = (userId, requestTour) => {
 
             if(requestTour.message)
                 newSchedule['message'] = requestTour.message;
+
+            if(requestTour.phoneNumber)
+                newSchedule['phoneNumber'] = requestTour.phoneNumber;
 
             const newScheduleModel = new scheduleModel(newSchedule);
 

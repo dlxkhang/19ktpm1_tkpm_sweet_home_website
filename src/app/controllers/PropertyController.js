@@ -75,7 +75,7 @@ class PropertyController {
         message: req.body.message,
         propertyId: req.body.propertyId,
         ack: 'pending',
-        appointmentDate: moment(req.body.date + ' ' + req.body.time, "DD-MM-YYYY hh:mm")
+        appointmentDate: moment(req.body.date + ' ' + req.body.time, "DD/MM/YYYY hh:mm")
       }
       
 
