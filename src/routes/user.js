@@ -20,7 +20,7 @@ router.post('/profile/edit/password', userController.editPassword);
 
 router.post('/favourite-list/remove',loggedInUserGuard,userController.removeFromFavouriteList);
 router.get('/favourite-list',loggedInUserGuard,userController.showFavoriteList);
-router.get('/home-tours', userController.showHomeTours);
+router.get('/user/home-tours', userController.showHomeTours);
 
 router.delete('/home-tours/cancel/:homeTourId', userController.cancelHomeTour);
 module.exports = router;

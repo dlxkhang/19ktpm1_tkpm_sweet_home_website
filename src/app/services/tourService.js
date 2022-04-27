@@ -20,7 +20,7 @@ module.exports.loadHomeTours = (userId) => {
                     return {
                         id: homeTour._id,
                         status: homeTour.ack,
-                        appointmentDate: moment(homeTour.appointmentDate),
+                        appointmentDate: moment(homeTour.appointmentDate.format("DD/MM/YYYY hh:mm:ss")),
                         propertyName: homeTour.propertyId.name,
                         propertyAddress: homeTour.propertyId.address,
                         propertyDescription: homeTour.propertyId.description,
