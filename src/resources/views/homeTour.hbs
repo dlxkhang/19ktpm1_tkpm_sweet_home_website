@@ -50,7 +50,10 @@
                 </div>
               </div>
               <input class="home-tour-id" type="hidden" name="homeTourId" value="{{this.id}}">
-              <button class="btn btn-danger cancel-tour-btn">Cancel</button>
+              {{#if this.status == true}}
+                <button class="btn btn-danger cancel-tour-btn">Cancel</button>
+              {{/if}}
+              
             </div>
           {{/each}}
         </div>
