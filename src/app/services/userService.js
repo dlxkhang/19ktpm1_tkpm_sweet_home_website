@@ -99,9 +99,7 @@ module.exports.editProfile = (sessionUser, avatar, user) => {
     // If user doesn't input address => no need to save to database
     if (user.address == "")
       delete user.address;
-    // If user doesn't input phone number => no need to save to database
-    if (user.phoneNumber == "")
-      delete user.phoneNumber;
+    
     try {
       // Find and update user info in database
       const newDoc = await userModel.findOneAndUpdate({ _id: sessionUser._id }, user, { upsert: true, new: true });
