@@ -4,8 +4,7 @@ $(window).on('load', () => {
         $('#message').html('Matching').css('color', 'green');
         $('#passwordSubmit').removeAttr("disabled");
       } else {
-        $('#passwordSubmit').attr("disabled", "disabled");
-        $('#message').html('Not Matching').css('color', 'red');
+        $('#message').html('Password does not match').css('color', 'red');
       }
     });
 });
