@@ -14,6 +14,7 @@ module.exports.loadCommentPerPage = (propertySlug, page) => {
                 select: 'slug',
                 match: { slug: propertySlug }
             })
+            .sort({'createdAt':-1})
             .skip((commentPerPage * page) - commentPerPage)
             .limit(commentPerPage)
             .exec((err, comments) => {
@@ -33,43 +34,24 @@ module.exports.loadCommentPerPage = (propertySlug, page) => {
                         select: 'slug',
                         match: { slug: propertySlug }
                     })
-                    .exec((err, comments) => {
-                        var resultSet = comments.filter((comment) =>  {
+                    .exec((err, result) => {
+                        // Count total comments
+                        result = result.filter((comment) =>  {
                             return comment.postId !== null;
                         });
-                        if(err) {
-                            console.log(err);
-                            reject(err);
-                        }
-                        else {
-                            // Count total comments
-                            commentModel
-                            .find()
-                            .populate({
-                                path: 'postId',
-                                select: 'slug',
-                                match: { slug: propertySlug }
-                            })
-                            .exec((err, result) => {
-                                // Count total comments
-                                result = result.filter((comment) =>  {
-                                    return comment.postId !== null;
-                                });
-                                const count = result.length;
+                        const count = result.length;
 
-                                // Extract needed information
-                                resultSet = resultSet.map((comment) =>{
-                                    return {
-                                        authorName: comment.authorName,
-                                        authorAvatar: comment.authorAvatar,
-                                        content: comment.content,
-                                        createdAt: comment.createdAt.toLocaleString('vi-VN')
-                                    }
-                                })
-                                resolve({comments: resultSet, numOfComment: count});
-                            })
-                        }
-                    });
+                        // Extract needed information
+                        resultSet = resultSet.map((comment) =>{
+                            return {
+                                authorName: comment.authorName,
+                                authorAvatar: comment.authorAvatar,
+                                content: comment.content,
+                                createdAt: comment.createdAt.toLocaleString('vi-VN')
+                            }
+                        })
+                        resolve({comments: resultSet, numOfComment: count});
+                    })
                 }
             });
     })

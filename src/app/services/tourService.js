@@ -8,7 +8,7 @@ module.exports.loadHomeTours = (userId) => {
             .findById(userId, 'schedule')
             .populate({
                 path: 'schedule',
-                select: 'propertyId appointmentDate',
+                select: 'propertyId ack appointmentDate',
                 populate: {
                     path: 'propertyId',
                     select: 'name address description price previewImage'
@@ -20,11 +20,11 @@ module.exports.loadHomeTours = (userId) => {
                     return {
                         id: homeTour._id,
                         status: homeTour.ack,
-                        appointmentDate: moment(homeTour.appointmentDate),
+                        appointmentDate: moment(homeTour.appointmentDate).format("DD/MM/YYYY hh:mm A").toLocaleString(),
                         propertyName: homeTour.propertyId.name,
                         propertyAddress: homeTour.propertyId.address,
                         propertyDescription: homeTour.propertyId.description,
-                        propertyPrice: homeTour.propertyId.price,
+                        propertyPrice: homeTour.propertyId.price.toLocaleString(),
                         propertyImage: homeTour.propertyId.previewImage
                     }
                 })
@@ -61,7 +61,7 @@ module.exports.requestTour = (userId, requestTour) => {
                     { $push: { schedule: savedDoc._id} }, 
                     {upsert: true}
                 );
-                resolve(moment(savedDoc.appointmentDate));
+                resolve(moment(savedDoc.appointmentDate).format('DD/MM/YYYY hh:mm A'));
                 // saved!
             });
         } 
